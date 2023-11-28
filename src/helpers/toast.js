@@ -6,6 +6,7 @@ const toast = {
   },
   success: options => {
     DeviceEventEmitter.emit('SHOW TOAST', {...options, type: 'success'});
+    // console.log('object success', options.message);
   },
   danger: options => {
     DeviceEventEmitter.emit('SHOW TOAST', {...options, type: 'danger'});
