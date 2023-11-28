@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   DeviceEventEmitter,
   StyleSheet,
@@ -7,9 +7,19 @@ import {
   View,
 } from 'react-native';
 
+const colors = {
+  info: '#ffcc00',
+  success: '#28a745',
+  danger: '#dc3545',
+};
+
 export default function Toast() {
+  const [messageType, setMessageType] = useState(null);
+  const [message, setMessage] = useState('');
+
   const onNewToast = data => {
-    console.log('data', data);
+    setMessage(data.message);
+    setMessageType(data.type);
   };
 
   useEffect(() => {
@@ -20,13 +30,17 @@ export default function Toast() {
     };
   }, []);
 
-  return (
-    <View style={styles.toast}>
-      <TouchableOpacity>
-        <Text style={styles.toastText}>Success Toast</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  if (!message) {
+    return null;
+  } else {
+    return (
+      <View style={[styles.toast, {backgroundColor: colors[messageType]}]}>
+        <TouchableOpacity>
+          <Text style={styles.toastText}>{message}</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -35,7 +49,6 @@ const styles = StyleSheet.create({
     top: '12%',
     left: '4%',
     right: '4%',
-    backgroundColor: 'green',
     zIndex: 1,
     elevation: 1,
     borderRadius: 10,
