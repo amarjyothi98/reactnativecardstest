@@ -16,11 +16,33 @@ const colors = {
 export default function Toast() {
   const [messageType, setMessageType] = useState(null);
   const [message, setMessage] = useState('');
+  const [timeoutDuration, setTimeoutDuration] = useState(3000);
 
   const onNewToast = data => {
+    if (data.duration) {
+      setTimeoutDuration(data.duration);
+    }
+
     setMessage(data.message);
     setMessageType(data.type);
   };
+
+  const closeToast = () => {
+    setMessage(null);
+    setTimeoutDuration(3000);
+  };
+
+  useEffect(() => {
+    if (message) {
+      if (timeoutDuration === 0) {
+        closeToast();
+      } else {
+        setTimeout(() => {
+          setTimeoutDuration(prev => prev - 1000);
+        }, 1000);
+      }
+    }
+  }, [message, timeoutDuration]);
 
   useEffect(() => {
     DeviceEventEmitter.addListener('SHOW TOAST', onNewToast);

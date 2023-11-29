@@ -7,7 +7,7 @@ export default function ToastButtons() {
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => {
-          toast.success({message: 'Success'});
+          toast.success({message: 'Success', duration: 2000});
         }}
         style={styles.button}>
         <Text style={styles.buttonText}>Success</Text>
