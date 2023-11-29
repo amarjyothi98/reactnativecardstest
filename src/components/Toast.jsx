@@ -68,7 +68,7 @@ export default function Toast() {
 const styles = StyleSheet.create({
   toast: {
     position: 'absolute',
-    top: '12%',
+    top: '5%',
     left: '4%',
     right: '4%',
     zIndex: 1,
