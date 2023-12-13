@@ -9,6 +9,7 @@ import ActionCard from './components/ActionCard';
 import ContactList from './components/ContactList';
 import Toast from './components/Toast';
 import ToastButtons from './components/ToastButtons';
+import ToProfileBusinessButton from './components/ToProfileBusinessButton';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <ActionCard />
         <ContactList />
         <ToastButtons />
+        <ToProfileBusinessButton />
       </ScrollView>
     </SafeAreaView>
   );
