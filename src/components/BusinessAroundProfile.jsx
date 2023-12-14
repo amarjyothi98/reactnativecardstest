@@ -48,10 +48,16 @@ export default function BusinessAroundProfile() {
       />
       <View style={styles.navigationArrors}>
         <TouchableOpacity onPress={goToPrevious}>
-          <Text style={{fontSize: 30, fontWeight: '700'}}>&lt;</Text>
+          <Entypo
+            name="chevron-with-circle-left"
+            style={{color: 'hsl(352,100%,11.8%)', fontSize: 30}}
+          />
         </TouchableOpacity>
         <TouchableOpacity onPress={goToNext}>
-          <Text style={{fontSize: 30, fontWeight: '700'}}>&gt;</Text>
+          <Entypo
+            name="chevron-with-circle-right"
+            style={{color: 'hsl(352,100%,11.8%)', fontSize: 30}}
+          />
         </TouchableOpacity>
       </View>
       <View style={styles.imageCountContainer}>
@@ -273,9 +279,9 @@ const styles = StyleSheet.create({
   },
   navigationArrors: {
     flexDirection: 'row',
-    gap: 350,
+    gap: 330,
     position: 'absolute',
-    transform: [{translateX: 20}, {translateY: 100}],
+    transform: [{translateX: 20}, {translateY: 110}],
   },
   imageCountContainerImage: {
     height: 50,
