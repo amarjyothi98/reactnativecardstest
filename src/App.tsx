@@ -1,4 +1,4 @@
-import {SafeAreaView, ScrollView} from 'react-native';
+import {Platform, SafeAreaView, ScrollView, StatusBar} from 'react-native';
 
 import React from 'react';
 
@@ -10,6 +10,7 @@ import ContactList from './components/ContactList';
 import Toast from './components/Toast';
 import ToastButtons from './components/ToastButtons';
 import ToProfileBusinessButton from './components/ToProfileBusinessButton';
+import BusinessAroundProfile from './components/BusinessAroundProfile';
 
 export default function App() {
   return (
@@ -23,7 +24,12 @@ export default function App() {
         <ContactList />
         <ToastButtons />
         <ToProfileBusinessButton />
+        <BusinessAroundProfile />
       </ScrollView>
+      <StatusBar
+        backgroundColor="#8B4513"
+        barStyle={Platform.OS === 'ios' ? 'dark-content' : 'light-content'}
+      />
     </SafeAreaView>
   );
 }
