@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export default function BusinessAroundProfile() {
   const url =
@@ -83,13 +84,21 @@ export default function BusinessAroundProfile() {
           }}
           style={styles.ownerImage}
         />
-        <View>
-          <Text style={{fontWeight: '600', fontSize: 16}}>
-            Shubham Chaturvedi
-          </Text>
-          <Text style={{fontWeight: '400', fontSize: 12, color: '#282C35'}}>
-            Posted 4 days ago
-          </Text>
+        <View style={styles.profileContainer}>
+          <View>
+            <Text style={{fontWeight: '600', fontSize: 16}}>
+              Shubham Chaturvedi
+            </Text>
+            <Text style={{fontWeight: '400', fontSize: 12, color: '#282C35'}}>
+              Posted 4 days ago
+            </Text>
+          </View>
+          <View>
+            <AntDesign
+              name="checkcircleo"
+              style={{color: 'green', fontSize: 30}}
+            />
+          </View>
         </View>
       </View>
       <View style={styles.topCategoryContainer}>
@@ -282,6 +291,11 @@ const styles = StyleSheet.create({
     gap: 330,
     position: 'absolute',
     transform: [{translateX: 20}, {translateY: 110}],
+  },
+  profileContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 150,
   },
   imageCountContainerImage: {
     height: 50,
