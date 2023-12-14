@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {FontAwesome} from '@expo/vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 
@@ -41,11 +48,21 @@ export default function BusinessAroundProfile() {
         style={styles.image}
       />
       <View style={styles.imageCountContainer}>
-        <Image
-          style={styles.imageCountContainerImage}
-          source={{uri: businessImages[currentIndex]}}
-        />
+        {businessImages.map((data, slideIndex) => (
+          <TouchableOpacity onPress={() => goToIndex(slideIndex)}>
+            <Image
+              key={slideIndex}
+              style={[
+                styles.imageCountContainerImage,
+                slideIndex === currentIndex &&
+                  styles.imageCountContainerHighlight,
+              ]}
+              source={{uri: data}}
+            />
+          </TouchableOpacity>
+        ))}
       </View>
+      <View style={styles.line} />
       <View style={styles.ownerInfoContainer}>
         <Image
           source={{
@@ -235,7 +252,12 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 8,
     flexDirection: 'row',
+    gap: 10,
     justifyContent: 'center',
+  },
+  imageCountContainerHighlight: {
+    borderWidth: 2,
+    borderColor: 'hsl(352,100%,11.8%)',
   },
   imageCountContainerImage: {
     height: 50,
