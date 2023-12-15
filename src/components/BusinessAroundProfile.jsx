@@ -95,10 +95,7 @@ export default function BusinessAroundProfile() {
           </View>
         </View>
         <View>
-          <AntDesign
-            name="checkcircleo"
-            style={styles.verifiedIcon}
-          />
+          <AntDesign name="checkcircleo" style={styles.verifiedIcon} />
         </View>
       </View>
       <View style={styles.topCategoryContainer}>
@@ -289,9 +286,11 @@ const styles = StyleSheet.create({
   },
   navigationArrors: {
     flexDirection: 'row',
-    gap: 290,
     position: 'absolute',
-    transform: [{translateX: 20}, {translateY: 110}],
+    transform: [{translateX: 0}, {translateY: 110}],
+    width: widthFull,
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
   },
   profileContainer: {
     flexDirection: 'row',
