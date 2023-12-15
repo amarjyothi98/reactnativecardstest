@@ -78,14 +78,14 @@ export default function BusinessAroundProfile() {
       </View>
       <View style={styles.line} />
       <View style={styles.ownerInfoContainer}>
-        <Image
-          source={{
-            uri: url,
-          }}
-          style={styles.ownerImage}
-        />
         <View style={styles.profileContainer}>
-          <View>
+          <Image
+            source={{
+              uri: url,
+            }}
+            style={styles.ownerImage}
+          />
+          <View style={styles.ownerNameContainer}>
             <Text style={{fontWeight: '600', fontSize: 16}}>
               Shubham Chaturvedi
             </Text>
@@ -93,12 +93,12 @@ export default function BusinessAroundProfile() {
               Posted 4 days ago
             </Text>
           </View>
-          <View>
-            <AntDesign
-              name="checkcircleo"
-              style={{color: 'green', fontSize: 30}}
-            />
-          </View>
+        </View>
+        <View>
+          <AntDesign
+            name="checkcircleo"
+            style={styles.verifiedIcon}
+          />
         </View>
       </View>
       <View style={styles.topCategoryContainer}>
@@ -208,6 +208,7 @@ const styles = StyleSheet.create({
     gap: 10,
     marginHorizontal: 10,
     marginVertical: 15,
+    justifyContent: 'space-between',
   },
   ownerImage: {
     width: 50,
@@ -288,18 +289,27 @@ const styles = StyleSheet.create({
   },
   navigationArrors: {
     flexDirection: 'row',
-    gap: 330,
+    gap: 290,
     position: 'absolute',
     transform: [{translateX: 20}, {translateY: 110}],
   },
   profileContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    gap: 150,
+    // backgroundColor: 'red',
   },
   imageCountContainerImage: {
     height: 50,
     width: 40,
     borderRadius: 10,
+  },
+  ownerNameContainer: {
+    justifyContent: 'center',
+    paddingLeft: 10,
+  },
+  verifiedIcon: {
+    color: 'green',
+    fontSize: 30,
+    paddingRight: 5,
   },
 });
