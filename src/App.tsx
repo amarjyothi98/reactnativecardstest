@@ -22,10 +22,28 @@ export type RootStackParamList = {
   Details: {productId: String};
 };
 
-const stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
+    // <NavigationContainer>
+    //   <Stack.Navigator initialRouteName="Home">
+    //     <Stack.Screen
+    //       name="Home"
+    //       component={Home}
+    //       options={{
+    //         title: 'trending product',
+    //       }}
+    //     />
+    //     <Stack.Screen
+    //       name="Details"
+    //       component={Home}
+    //       options={{
+    //         title: 'product details',
+    //       }}
+    //     />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
     <SafeAreaView>
       <Toast />
       <ScrollView>

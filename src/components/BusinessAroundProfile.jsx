@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {
   Dimensions,
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -9,6 +10,7 @@ import {
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function BusinessAroundProfile() {
   const url =
@@ -43,10 +45,18 @@ export default function BusinessAroundProfile() {
 
   return (
     <View style={styles.mainContainer}>
-      <Image
-        source={{uri: businessImages[currentIndex]}}
-        style={styles.image}
-      />
+      <ScrollView
+        // contentContainerStyle={styles.imageScrollView}
+        style={styles.imageScrollView}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        pagingEnabled>
+        <Image
+          source={{uri: businessImages[currentIndex]}}
+          style={styles.image}
+        />
+        <Text>aladsa</Text>
+      </ScrollView>
       <View style={styles.navigationArrors}>
         <TouchableOpacity onPress={goToPrevious}>
           <Entypo
@@ -60,6 +70,9 @@ export default function BusinessAroundProfile() {
             style={{color: 'hsl(352,100%,11.8%)', fontSize: 30}}
           />
         </TouchableOpacity>
+      </View>
+      <View style={styles.viewCount}>
+        <MaterialCommunityIcons name="eye" />
       </View>
       <View style={styles.imageCountContainer}>
         {businessImages.map((data, slideIndex) => (
@@ -100,35 +113,35 @@ export default function BusinessAroundProfile() {
       </View>
       <View style={styles.topCategoryContainer}>
         <View style={styles.cateogoryMainContainer}>
-          <View style={[styles.categoryContainer, styles.color1]}>
+          <TouchableOpacity style={[styles.categoryContainer, styles.color1]}>
             {/* <FontAwesome name="group" size={24} color="black" /> */}
             {/* <Text>Medium</Text> */}
             <Entypo
               name="location"
               style={{color: 'hsl(352,100%,11.8%)', fontSize: 30}}
             />
-          </View>
-          <View style={[styles.categoryContainer, styles.color2]}>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.categoryContainer, styles.color2]}>
             {/* <Text>Everyone</Text> */}
             <Entypo
               name="mail"
               style={{color: 'hsl(352,100%,11.8%)', fontSize: 30}}
             />
-          </View>
-          <View style={[styles.categoryContainer, styles.color3]}>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.categoryContainer, styles.color3]}>
             {/* <Text>Everyone</Text> */}
             <Entypo
               name="phone"
               style={{color: 'hsl(352,100%,11.8%)', fontSize: 30}}
             />
-          </View>
-          <View style={[styles.categoryContainer, styles.color4]}>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.categoryContainer, styles.color4]}>
             {/* <Text>Everyone</Text> */}
             <Entypo
               name="message"
               style={{color: 'hsl(352,100%,11.8%)', fontSize: 30}}
             />
-          </View>
+          </TouchableOpacity>
         </View>
         {/* <View style={styles.cateogoryMainContainer}>
           <View style={styles.categoryContainer}>
@@ -189,15 +202,22 @@ const heightFull = Dimensions.get('window').height;
 const widthFull = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   mainContainer: {
-    height: heightFull,
     // marginHorizontal: 20,
     marginVertical: 10,
   },
-  image: {
+  imageScrollView: {
     height: 250,
-    width: 'auto',
-    marginHorizontal: 8,
+    width: widthFull - 15,
     borderRadius: 10,
+    marginHorizontal: 8,
+    backgroundColor: 'red',
+  },
+  image: {
+    height: '100%',
+    width: widthFull - 15,
+    // width: 'auto',
+    // marginHorizontal: 8,
+    // borderRadius: 10,
   },
   ownerInfoContainer: {
     flexDirection: 'row',
@@ -310,5 +330,8 @@ const styles = StyleSheet.create({
     color: 'green',
     fontSize: 30,
     paddingRight: 5,
+  },
+  viewCount: {
+    position: 'absolute',
   },
 });
