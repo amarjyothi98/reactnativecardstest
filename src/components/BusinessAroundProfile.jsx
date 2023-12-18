@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   Dimensions,
   Image,
@@ -25,18 +25,25 @@ export default function BusinessAroundProfile() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // const goToPrevious = () => {
+  //   const isFirstSlide = currentIndex === 0;
+  //   const newIndex = isFirstSlide
+  //     ? businessImages.length - 1
+  //     : currentIndex - 1;
+  //   setCurrentIndex(newIndex);
+  // };
+
+  const scrollViewRef = useRef();
   const goToPrevious = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide
-      ? businessImages.length - 1
-      : currentIndex - 1;
-    setCurrentIndex(newIndex);
+    const newPage = Math.max(0, currentIndex - 1);
+    scrollViewRef.current.scrollTo({x: newPage * widthFull, animated: true});
+    setCurrentIndex(newPage);
   };
 
   const goToNext = () => {
-    const isLastSlide = currentIndex === businessImages.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
+    const newPage = Math.min(businessImages.length - 1, currentIndex + 1);
+    scrollViewRef.current.scrollTo({x: newPage * widthFull, animated: true});
+    setCurrentIndex(newPage);
   };
 
   const goToIndex = slideIndex => {
@@ -48,15 +55,20 @@ export default function BusinessAroundProfile() {
       <View>
         <ScrollView
           // contentContainerStyle={styles.imageScrollView}
+          ref={scrollViewRef}
           style={styles.imageScrollView}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          pagingEnabled>
-          <Image
-            source={{uri: businessImages[currentIndex]}}
-            style={styles.image}
-          />
-          <Text>aladsa</Text>
+          pagingEnabled
+          onMomentumScrollEnd={event => {
+            const contentOffset = event.nativeEvent.contentOffset;
+            const viewSize = event.nativeEvent.layoutMeasurement;
+            const index = Math.floor(contentOffset.x / viewSize.width);
+            setCurrentIndex(index);
+          }}>
+          {businessImages.map(data => (
+            <Image key={data.id} source={{uri: data}} style={styles.image} />
+          ))}
         </ScrollView>
         <View style={styles.viewCountContainer}>
           <MaterialCommunityIcons name="eye" style={{color: '#fff'}} />
@@ -213,7 +225,7 @@ const styles = StyleSheet.create({
     width: widthFull - 15,
     borderRadius: 10,
     marginHorizontal: 8,
-    backgroundColor: 'red',
+    // backgroundColor: 'red',
   },
   image: {
     height: '100%',
