@@ -45,18 +45,24 @@ export default function BusinessAroundProfile() {
 
   return (
     <View style={styles.mainContainer}>
-      <ScrollView
-        // contentContainerStyle={styles.imageScrollView}
-        style={styles.imageScrollView}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        pagingEnabled>
-        <Image
-          source={{uri: businessImages[currentIndex]}}
-          style={styles.image}
-        />
-        <Text>aladsa</Text>
-      </ScrollView>
+      <View>
+        <ScrollView
+          // contentContainerStyle={styles.imageScrollView}
+          style={styles.imageScrollView}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          pagingEnabled>
+          <Image
+            source={{uri: businessImages[currentIndex]}}
+            style={styles.image}
+          />
+          <Text>aladsa</Text>
+        </ScrollView>
+        <View style={styles.viewCountContainer}>
+          <MaterialCommunityIcons name="eye" style={{color: '#fff'}} />
+          <Text style={{color: '#fff'}}>12</Text>
+        </View>
+      </View>
       <View style={styles.navigationArrors}>
         <TouchableOpacity onPress={goToPrevious}>
           <Entypo
@@ -70,9 +76,6 @@ export default function BusinessAroundProfile() {
             style={{color: 'hsl(352,100%,11.8%)', fontSize: 30}}
           />
         </TouchableOpacity>
-      </View>
-      <View style={styles.viewCount}>
-        <MaterialCommunityIcons name="eye" />
       </View>
       <View style={styles.imageCountContainer}>
         {businessImages.map((data, slideIndex) => (
@@ -331,7 +334,18 @@ const styles = StyleSheet.create({
     fontSize: 30,
     paddingRight: 5,
   },
-  viewCount: {
+  viewCountContainer: {
     position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#808080',
+    paddingHorizontal: 6,
+    paddingVertical: 4,
+    borderRadius: 8,
+    gap: 5,
+    opacity: 0.7,
+    right: 16,
+    top: 8,
   },
 });

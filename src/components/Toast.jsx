@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 const colors = {
+  primary: '#808488',
   info: '#ffcc00',
   success: '#28a745',
   danger: '#dc3545',
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
   },
   toastText: {
     padding: 14,
-    color: 'white',
+    color: '#fff',
     fontSize: 16,
     textAlign: 'center',
   },

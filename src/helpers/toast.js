@@ -2,7 +2,7 @@ import {DeviceEventEmitter} from 'react-native';
 
 const toast = {
   info: options => {
-    DeviceEventEmitter.emit('SHOW TOAST', {...options, type: 'info'});
+    DeviceEventEmitter.emit('SHOW TOAST', {...options, type: 'primary'});
   },
   success: options => {
     DeviceEventEmitter.emit('SHOW TOAST', {...options, type: 'success'});
